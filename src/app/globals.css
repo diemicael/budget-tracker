@@ -119,4 +119,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .my-container {
+    @apply container mr-auto ml-auto pr-8 pl-8
+  }
 }
