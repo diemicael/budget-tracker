@@ -38,7 +38,10 @@ function MobileNavbar() {
             </Button>
           </SheetTrigger>
           <SheetContent className="w-[400px] sm:w-[540px]" side="left">
-            <div className="pt-4 px-4">
+            <SheetHeader>
+              <SheetTitle></SheetTitle> {/* Oculto visualmente */}
+            </SheetHeader>
+            <div className="px-4">
               <Logo />
             </div>
             <div className="flex flex-col gap-1 pt-4 px-6">
