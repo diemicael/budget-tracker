@@ -120,6 +120,10 @@
     @apply bg-background text-foreground;
   }
 
+  button {
+    @apply hover:cursor-pointer
+  }
+
   .my-container {
     @apply container mr-auto ml-auto pr-8 pl-8
   }
