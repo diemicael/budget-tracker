@@ -6,6 +6,7 @@ import { UserSettings } from "@prisma/client";
 import { differenceInDays, set, startOfMonth } from "date-fns";
 import { useState } from "react";
 import { toast } from "sonner";
+import StatsCards from "./StatsCards";
 
 export default function Overview({ userSettings }: { userSettings: UserSettings }) {
   const [dateRange, setDateRange] = useState<{ from: Date; to: Date }>({
@@ -17,7 +18,7 @@ export default function Overview({ userSettings }: { userSettings: UserSettings 
       <div className="my-container flex flex-wrap items-end justify-between gap-2 py-6">
         <h2 className="text-3xl font-bold">Overview</h2>
         <div className="flex items-center gap-3">
-          <DateRangePicker 
+          <DateRangePicker
             initialDateFrom={dateRange.from}
             initialDateTo={dateRange.to}
             showCompare={false}
@@ -35,6 +36,13 @@ export default function Overview({ userSettings }: { userSettings: UserSettings 
             }}
           />
         </div>
+      </div>
+      <div className="my-container flex w-full flex-col gap-2">
+        <StatsCards
+          userSettings={userSettings}
+          from={dateRange.from}
+          to={dateRange.to}
+        />
       </div>
     </>
   )
