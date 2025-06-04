@@ -93,7 +93,7 @@ function CategoriesCard({
                       </span>
                     </div>
 
-                    <Progress
+                    <Progress 
                       value={percentage}
                       indicator={
                         type === "receita" ? "bg-emerald-500" : "bg-red-500"
