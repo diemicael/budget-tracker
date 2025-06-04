@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Category } from "@prisma/client"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { CircleOff, Loader2, PlusSquare } from "lucide-react"
-import { useCallback, useState } from "react"
+import { ReactNode, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { CreateCategory } from "../_actions/categories"
@@ -23,9 +23,10 @@ import { useTheme } from "next-themes"
 interface Props {
   type: TransactionType
   successCallback: (category: Category) => void
+  trigger?: ReactNode
 }
 
-export default function CreateCategoryDialog({ type, successCallback }: Props) {
+export default function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
   const [open, setOpen] = useState(false)
   const form = useForm<CreateCategorySchemaType>({
     resolver: zodResolver(CreateCategorySchema as any),
@@ -73,13 +74,17 @@ export default function CreateCategoryDialog({ type, successCallback }: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen} modal={false}>
       <DialogTrigger asChild>
-        <Button
-          variant={"ghost"}
-          className="flex border-separate items-center justify-start rounded-none border-b px-3 py-3 text-muted-foreground"
-        >
-          <PlusSquare className="mr-2 h-4 w-4" />
-          Criar nova categoria
-        </Button>
+        {trigger ? (
+          trigger
+        ) : (
+          <Button
+            variant={"ghost"}
+            className="flex border-separate items-center justify-start rounded-none border-b px-3 py-3 text-muted-foreground"
+          >
+            <PlusSquare className="mr-2 h-4 w-4" />
+            Criar nova categoria
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
